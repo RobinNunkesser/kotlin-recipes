@@ -26,6 +26,13 @@ fun main() = Window {
             }) {
                 Text("UI example")
             }
+            Button(onClick = {
+                asyncExample.uiNetworkExample {
+                    text = it
+                }
+            }) {
+                Text("UI with Network example")
+            }
             Text(text)
         }
     }
