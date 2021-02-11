@@ -18,4 +18,8 @@ class JSONPlaceholderService : JSONPlaceholderAPI {
     override fun readAllPosts(): Call<List<PlaceholderPost>> = service.readAllPosts()
 
     override fun createPost(post: PlaceholderPost): Call<PlaceholderPost> = service.createPost(post)
+
+    override fun updatePost(id: Long, post: PlaceholderPost): Call<PlaceholderPost> = service.updatePost(id, post)
+
+    override fun deletePost(id: Long): Call<Void> = service.deletePost(id)
 }

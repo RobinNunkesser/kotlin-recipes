@@ -24,10 +24,12 @@ class PostRepositoryAdapter : Repository<Long, Post> {
     }
 
     override suspend fun update(id: Long, entity: Post): Boolean {
-        TODO("Not yet implemented")
+        val response = service.updatePost(id, entity.toPost()).execute()
+        return response.body()!!.id == id
     }
 
     override suspend fun delete(id: Long): Boolean {
-        TODO("Not yet implemented")
+        service.deletePost(id).execute()
+        return true
     }
 }

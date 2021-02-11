@@ -38,19 +38,49 @@ class InfrastructureTests {
             }
         }
     }
-}
 
-@Test
-fun createPost() {
-    val adapter = PostRepositoryAdapter()
-    runBlocking {
-        val result = kotlin.runCatching {
-            adapter.create(PostEntity(1, 1, "foo", "bar"))
+    @Test
+    fun createPost() {
+        val adapter = PostRepositoryAdapter()
+        runBlocking {
+            val result = kotlin.runCatching {
+                adapter.create(PostEntity(1, 1, "foo", "bar"))
+            }
+            result.onFailure { Fail(it) }
+            result.onSuccess {
+                Assert.assertEquals(101, it)
+            }
         }
-        result.onFailure { Fail(it) }
-        result.onSuccess {
-            Assert.assertEquals(101, it)
+    }
+
+    @Test
+    fun deletePost() {
+        val adapter = PostRepositoryAdapter()
+        runBlocking {
+            val result = kotlin.runCatching {
+                adapter.delete(1)
+            }
+            result.onFailure { Fail(it) }
+            result.onSuccess {
+                Assert.assertTrue(it)
+            }
+        }
+    }
+
+    @Test
+    fun updatePost() {
+        val adapter = PostRepositoryAdapter()
+        runBlocking {
+            val result = kotlin.runCatching {
+                adapter.update(1, PostEntity(1, 1, "foo", "bar"))
+            }
+            result.onFailure { Fail(it) }
+            result.onSuccess {
+                Assert.assertTrue(it)
+            }
         }
     }
 }
+
+
 
