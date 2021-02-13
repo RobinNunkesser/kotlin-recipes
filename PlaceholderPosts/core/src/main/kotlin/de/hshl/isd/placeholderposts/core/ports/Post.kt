@@ -1,4 +1,4 @@
-package de.hshl.isd.placeholderposts.infrastructure.common
+package de.hshl.isd.placeholderposts.core.ports
 
 interface Post {
     val userID: Long

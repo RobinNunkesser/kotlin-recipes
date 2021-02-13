@@ -1,6 +1,6 @@
 package de.hshl.isd.placeholderposts.infrastructure.adapters
 
-import de.hshl.isd.placeholderposts.infrastructure.common.Post
+import de.hshl.isd.placeholderposts.core.ports.Post
 
 data class PostEntity(
     override val userID: Long,
