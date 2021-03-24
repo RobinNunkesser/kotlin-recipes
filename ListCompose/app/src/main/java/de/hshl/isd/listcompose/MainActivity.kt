@@ -36,10 +36,10 @@ fun MainContent() {
 
     val dummySections = mapOf(
         "Section 1" to dummyItems,
-        "Section 2" to listOf<ItemViewModel>(ItemViewModel("Lorem Ipsum in Section 2", "Some sub"))
+        "Section 2" to listOf(ItemViewModel("Lorem Ipsum in Section 2", "Some sub"))
     )
 
-    val currentSection = Sections.SimpleList
+    val currentSection = Sections.SectionedList
 
     Column {
         TopAppBar(
