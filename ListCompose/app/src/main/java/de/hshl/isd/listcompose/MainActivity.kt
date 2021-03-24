@@ -3,22 +3,24 @@ package de.hshl.isd.listcompose
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import de.hshl.isd.listcompose.ui.theme.ListComposeTheme
 
 
 class MainActivity : ComponentActivity() {
+    private val viewModel by viewModels<SearchListViewModel>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             ListComposeTheme {
                 Surface(color = MaterialTheme.colors.background) {
-                    MainContent()
+                    MainContent(viewModel)
                 }
             }
         }
@@ -26,7 +28,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun MainContent() {
+fun MainContent(viewModel: SearchListViewModel) {
     val dummyItems = listOf(
         ItemViewModel("Teddy bear", "Subtitle 1"),
         ItemViewModel("Banana", "Subtitle 2"),
@@ -39,7 +41,7 @@ fun MainContent() {
         "Section 2" to listOf(ItemViewModel("Lorem Ipsum in Section 2", "Some sub"))
     )
 
-    val currentSection = Sections.SectionedList
+    val currentSection = Sections.SearchList
 
     Column {
         TopAppBar(
@@ -50,16 +52,8 @@ fun MainContent() {
                 Sections.StaticList -> StaticList()
                 Sections.SimpleList -> SimpleList(listitems = dummyItems)
                 Sections.SectionedList -> SectionedList(sections = dummySections)
-                Sections.SearchList -> SearchList()//state = SearchListState(dummyItems))
+                Sections.SearchList -> SearchList(viewModel, dummyItems)
             }
         }
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    ListComposeTheme {
-        MainContent()
     }
 }
