@@ -1,13 +1,15 @@
 package de.hshl.isd.listcompose
 
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 
 @Composable
-fun SimpleList(items: List<ItemViewModel>) {
+fun SimpleList(listitems: List<ItemViewModel>) {
+    LazyColumn {
+        items(listitems) {
+                item -> ItemRow(item)}
+    }
 }
 
-/*
-        items(listOf("Item 1", "Item 2", "Item 3")) {
-                item -> Text(text = item)}
-
- */

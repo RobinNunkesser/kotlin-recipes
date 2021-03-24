@@ -39,7 +39,7 @@ fun MainContent() {
         "Section 2" to listOf<ItemViewModel>(ItemViewModel("Lorem Ipsum in Section 2", "Some sub"))
     )
 
-    val currentSection = Sections.StaticList
+    val currentSection = Sections.SimpleList
 
     Column {
         TopAppBar(
@@ -48,7 +48,7 @@ fun MainContent() {
         Box(modifier = Modifier.weight(1f)) {
             when (currentSection) {
                 Sections.StaticList -> StaticList()
-                Sections.SimpleList -> SimpleList(items = dummyItems)
+                Sections.SimpleList -> SimpleList(listitems = dummyItems)
                 Sections.SectionedList -> SectionedList(sections = dummySections)
                 Sections.SearchList -> SearchList()//state = SearchListState(dummyItems))
             }
