@@ -10,15 +10,12 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.input.TextFieldValue
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import de.hshl.isd.mvxrecipe.ui.theme.MVXRecipeTheme
 
 class MainActivity : ComponentActivity() {
-    val viewModel by viewModels<MainViewModel>()
+    private val viewModel by viewModels<MainViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,8 +32,6 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun MainContent(viewModel: MainViewModel) {
 
-    val forename by viewModel.forename.observeAsState
-
     Scaffold(
         topBar = {
             TopAppBar(title = { Text(text = "MVU") })
@@ -44,40 +39,29 @@ fun MainContent(viewModel: MainViewModel) {
         content = {
             Column(verticalArrangement = Arrangement.Center,
                 modifier = Modifier.padding(8.dp)) {
-                TextField(value = viewModel.forename.value!!,
+                TextField(value = viewModel.forename,
                     onValueChange = {
-                        viewModel.forename.value = it
+                        viewModel.forename = it
                     })
-                TextField(value = viewModel.surname.value!!,
+                TextField(value = viewModel.surname,
                     onValueChange = {
-                        viewModel.surname.value = it
+                        viewModel.surname = it
                     })
                 Row {
                     Text(text = "Forename")
                     Text(
-                        text = viewModel.forename.value!!
+                        text = viewModel.forename
                     )
                 }
                 Row {
                     Text(text = "Surname")
                     Text(
-                        text = viewModel.surname.value!!
+                        text = viewModel.surname
                     )
                 }
-                Row {
-                    Text(text = "Complete Name")
-                    viewModel.mediatorName.value?.let { name ->
-                        Text(
-                            text = name,
-                        )
-                    }
+                Button(onClick = { viewModel.reset() }) {
+                    Text("Reset")
                 }
-                Button(onClick = { viewModel.computeName() }) {
-                    Text("Compute name")
-                }
-                Text(
-                    text = viewModel.name.value!!
-                )
             }
         })
 }
