@@ -8,3 +8,5 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Posts"
 include ':app'
+include ':core'
+include ':infrastructure'

@@ -1,13 +1,18 @@
 package de.hshl.isd.posts
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.foundation.layout.Column
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
+import de.hshl.isd.placeholderposts.core.ConcreteGetPostCommand
+import de.hshl.isd.placeholderposts.infrastructure.adapters.PostRepositoryAdapter
 import de.hshl.isd.posts.ui.theme.PostsTheme
 
 class MainActivity : ComponentActivity() {
@@ -15,9 +20,8 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             PostsTheme {
-                // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
-                    Greeting("Android")
+                    MainContent()
                 }
             }
         }
@@ -25,14 +29,37 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
+fun MainContent() {
+    val tag = "MainContent"
+    var id by remember { mutableStateOf("1") }
+    var resultText by remember { mutableStateOf("") }
+    var service = ConcreteGetPostCommand(PostRepositoryAdapter())
 
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    PostsTheme {
-        Greeting("Android")
+
+    fun success(value: String) {
+        resultText = value
+    }
+
+    fun failure(error: Throwable) {
+        Log.e(tag, error.localizedMessage!!)
+    }
+
+    Column {
+        TextField(
+            value = id,
+            onValueChange = {
+                id = it
+            }
+        )
+        Button(onClick = {
+            service.execute(
+                ConcretePostIDDTO(id.toLong()),
+                ::success,
+                ::failure
+            )
+        }) {
+            Text("Start")
+        }
+        Text(resultText)
     }
 }

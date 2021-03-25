@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="de.hshl.isd.placeholderposts.infrastructure.InfrastructureTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-02-22T15:08:58" hostname="HSHL-C02LW1Y4FH05.fritz.box" time="0.787">
+  <properties/>
+  <testcase name="readAllPosts" classname="de.hshl.isd.placeholderposts.infrastructure.InfrastructureTests" time="0.787"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
