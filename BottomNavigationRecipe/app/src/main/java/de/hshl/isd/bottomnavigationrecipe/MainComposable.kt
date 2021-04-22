@@ -49,6 +49,6 @@ fun Main() {
             }
         }
     ) {
-        NavigationHost(navController = navController)
+        NavigationHost(navController)
     }
 }

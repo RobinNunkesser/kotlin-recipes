@@ -1,6 +1,7 @@
 package de.hshl.isd.basicnavigation
 
 import androidx.compose.runtime.Composable
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -11,9 +12,8 @@ object MainDestinations {
 }
 
 @Composable
-fun NavGraph(startDestination: String = MainDestinations.HOME_ROUTE) {
-
-
+fun NavigationHost(navController: NavHostController,
+                   startDestination: String = MainDestinations.HOME_ROUTE) {
     NavHost(
         navController = navController,
         startDestination = startDestination
