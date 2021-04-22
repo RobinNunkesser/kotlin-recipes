@@ -12,7 +12,7 @@ object MainDestinations {
 
 @Composable
 fun NavGraph(startDestination: String = MainDestinations.HOME_ROUTE) {
-    val navController = rememberNavController()
+
 
     NavHost(
         navController = navController,

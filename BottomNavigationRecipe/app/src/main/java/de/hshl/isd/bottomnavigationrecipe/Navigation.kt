@@ -22,8 +22,8 @@ sealed class Screen(
 
 @Composable
 fun NavigationHost(
-    startDestination: String = Screen.Home.route,
-    navController: NavHostController
+    navController: NavHostController,
+    startDestination: String = Screen.Home.route
 ) {
     NavHost(
         navController = navController,
