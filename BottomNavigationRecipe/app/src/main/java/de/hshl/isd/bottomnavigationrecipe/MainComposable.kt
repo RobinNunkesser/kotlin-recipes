@@ -1,28 +1,16 @@
 package de.hshl.isd.bottomnavigationrecipe
 
-import androidx.annotation.StringRes
 import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.List
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
-import androidx.navigation.compose.*
-
-sealed class Screen(
-    val route: String,
-    @StringRes val resourceId: Int,
-    val icon: ImageVector?
-) {
-    object Home : Screen("home", R.string.nav_item_home, Icons.Filled.Home)
-    object Dashboard :
-        Screen("dashboard", R.string.nav_item_dashboard, Icons.Filled.List)
-}
+import androidx.navigation.compose.KEY_ROUTE
+import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.navigate
+import androidx.navigation.compose.rememberNavController
 
 @Composable
-fun Main(startDestination: String = Screen.Home.route) {
+fun Main() {
     val navController = rememberNavController()
     val items = listOf(
         Screen.Home,
@@ -61,16 +49,6 @@ fun Main(startDestination: String = Screen.Home.route) {
             }
         }
     ) {
-        NavHost(
-            navController = navController,
-            startDestination = startDestination
-        ) {
-            composable(Screen.Home.route) {
-                Home(navController = navController)
-            }
-            composable(Screen.Dashboard.route) {
-                Dashboard(navController = navController)
-            }
-        }
+        NavigationHost(navController = navController)
     }
 }
