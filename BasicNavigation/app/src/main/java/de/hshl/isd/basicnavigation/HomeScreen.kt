@@ -8,8 +8,8 @@ import androidx.navigation.compose.navigate
 
 @Composable
 fun Home(navController: NavController) {
-            Button(onClick = { navController.navigate(Screen.Detail.route) }) {
-                Text(text = "Navigate deeper")
-            }
+    Button(onClick = { navController.navigate(Screen.Detail.route) }) {
+        Text(text = "Navigate deeper")
+    }
 }
 
