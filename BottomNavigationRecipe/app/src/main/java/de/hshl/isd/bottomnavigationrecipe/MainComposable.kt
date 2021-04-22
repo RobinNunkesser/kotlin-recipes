@@ -33,10 +33,10 @@ fun Main() {
                         icon = {
                             Icon(
                                 imageVector = screen.icon!!,
-                                contentDescription = stringResource(id = screen.resourceId)
+                                contentDescription = stringResource(id = screen.resourceId!!)
                             )
                         },
-                        label = { Text(stringResource(screen.resourceId)) },
+                        label = { Text(stringResource(screen.resourceId!!)) },
                         selected = currentRoute == screen.route,
                         onClick = {
                             navController.navigate(screen.route) {

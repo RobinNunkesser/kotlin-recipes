@@ -12,12 +12,14 @@ import androidx.navigation.compose.composable
 
 sealed class Screen(
     val route: String,
-    @StringRes val resourceId: Int,
-    val icon: ImageVector?
+    @StringRes val resourceId: Int? = null,
+    val icon: ImageVector? = null
 ) {
     object Home : Screen("home", R.string.nav_item_home, Icons.Filled.Home)
     object Dashboard :
         Screen("dashboard", R.string.nav_item_dashboard, Icons.Filled.List)
+
+    object SecondLevel : Screen("secondlevel")
 }
 
 @Composable
@@ -34,6 +36,9 @@ fun NavigationHost(
         }
         composable(Screen.Dashboard.route) {
             Dashboard(navController = navController)
+        }
+        composable(Screen.SecondLevel.route) {
+            SecondLevelScreen(message = "Hello second level")
         }
     }
 }
