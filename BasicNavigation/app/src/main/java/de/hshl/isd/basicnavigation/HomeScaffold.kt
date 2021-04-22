@@ -12,7 +12,7 @@ import de.hshl.isd.basicnavigation.ui.theme.BasicNavigationTheme
 fun Home(navController: NavController) {
     BasicNavigationTheme {
         Scaffold {
-            Button(onClick = { navController.navigate(MainDestinations.DETAIL_ROUTE) }) {
+            Button(onClick = { navController.navigate(Screen.Detail.route) }) {
                 Text(text = "Navigate deeper")
             }
         }

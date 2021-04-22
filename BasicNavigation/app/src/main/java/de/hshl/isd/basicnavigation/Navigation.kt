@@ -4,24 +4,25 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
 
-object MainDestinations {
-    const val HOME_ROUTE = "home"
-    const val DETAIL_ROUTE = "detail"
+sealed class Screen(val route: String) {
+    object Home : Screen("home")
+    object Detail : Screen("detail")
 }
 
 @Composable
-fun NavigationHost(navController: NavHostController,
-                   startDestination: String = MainDestinations.HOME_ROUTE) {
+fun NavigationHost(
+    navController: NavHostController,
+    startDestination: String = Screen.Home.route
+) {
     NavHost(
         navController = navController,
         startDestination = startDestination
     ) {
-        composable(MainDestinations.HOME_ROUTE) {
+        composable(Screen.Home.route) {
             Home(navController = navController)
         }
-        composable(MainDestinations.DETAIL_ROUTE) {
+        composable(Screen.Detail.route) {
             Detail(navController = navController)
         }
     }
