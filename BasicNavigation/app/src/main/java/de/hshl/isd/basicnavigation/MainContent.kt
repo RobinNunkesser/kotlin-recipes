@@ -14,9 +14,7 @@ fun MainContent() {
     BasicNavigationTheme {
         Scaffold(
             topBar = {
-                TopAppBar {
-                    Text(text = "Basic Navigation")
-                }
+                TopAppBar(title = { Text(text = "Basic Navigation") })
             }
         ) {
             NavigationHost(navController)
