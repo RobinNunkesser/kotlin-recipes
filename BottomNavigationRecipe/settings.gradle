@@ -7,5 +7,4 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "Bottom Navigation Recipe"
-include(":app")
- 
+include ':app'

@@ -4,10 +4,10 @@ import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.res.stringResource
+import androidx.navigation.NavDestination.Companion.hierarchy
+import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.KEY_ROUTE
 import androidx.navigation.compose.currentBackStackEntryAsState
-import androidx.navigation.compose.navigate
 import androidx.navigation.compose.rememberNavController
 import de.hshl.isd.bottomnavigationrecipe.ui.theme.BottomNavigationRecipeTheme
 
@@ -39,8 +39,8 @@ fun BottomBar(navController: NavHostController) {
     BottomNavigation {
         val navBackStackEntry by
         navController.currentBackStackEntryAsState()
-        val currentRoute =
-            navBackStackEntry?.arguments?.getString(KEY_ROUTE)
+        val currentDestination =
+            navBackStackEntry?.destination
         items.forEach { screen ->
             BottomNavigationItem(
                 icon = {
@@ -50,11 +50,14 @@ fun BottomBar(navController: NavHostController) {
                     )
                 },
                 label = { Text(stringResource(screen.resourceId!!)) },
-                selected = currentRoute == screen.route,
+                selected = currentDestination?.hierarchy?.any { it.route == screen.route } == true,
                 onClick = {
                     navController.navigate(screen.route) {
-                        popUpTo = navController.graph.startDestination
+                        popUpTo(navController.graph.findStartDestination().id) {
+                            saveState = true
+                        }
                         launchSingleTop = true
+                        restoreState = true
                     }
                 }
             )
