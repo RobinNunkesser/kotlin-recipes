@@ -7,5 +7,4 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "Basic Navigation"
-include(":app")
- 
+include ':app'
