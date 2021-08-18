@@ -16,8 +16,8 @@ class ConcreteGetAnswerCommand(val superComputer: SuperComputer)
     ) {
         GlobalScope.launch {
             val result = runCatching {  superComputer.answer(inDTO) }
-            result.onSuccess { successHandler(it) }
-            result.onFailure { errorHandler(it) }
+            result.onSuccess(successHandler)
+            result.onFailure(errorHandler)
         }
     }
 }
