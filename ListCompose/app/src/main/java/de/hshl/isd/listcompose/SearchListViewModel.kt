@@ -19,9 +19,9 @@ class SearchListViewModel : ViewModel() {
                 ) || it.subtitle.contains(filter, ignoreCase = true)
             }
         }
-
-    fun addItems(newitems: List<ItemViewModel>) {
-        items += newitems
+    
+    fun replaceItems(newitems: List<ItemViewModel>) {
+        items = newitems
     }
 
 }
