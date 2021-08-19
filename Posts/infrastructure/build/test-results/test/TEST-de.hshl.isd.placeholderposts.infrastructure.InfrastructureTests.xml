@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="de.hshl.isd.placeholderposts.infrastructure.InfrastructureTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-02-22T15:08:58" hostname="HSHL-C02LW1Y4FH05.fritz.box" time="0.787">
+<testsuite name="de.hshl.isd.placeholderposts.infrastructure.InfrastructureTests" tests="5" skipped="0" failures="0" errors="0" timestamp="2021-08-19T07:26:30" hostname="HSHL-C02LW1Y4FH05.fritz.box" time="1.896">
   <properties/>
-  <testcase name="readAllPosts" classname="de.hshl.isd.placeholderposts.infrastructure.InfrastructureTests" time="0.787"/>
+  <testcase name="readPost" classname="de.hshl.isd.placeholderposts.infrastructure.InfrastructureTests" time="0.644"/>
+  <testcase name="updatePost" classname="de.hshl.isd.placeholderposts.infrastructure.InfrastructureTests" time="0.371"/>
+  <testcase name="readAllPosts" classname="de.hshl.isd.placeholderposts.infrastructure.InfrastructureTests" time="0.2"/>
+  <testcase name="createPost" classname="de.hshl.isd.placeholderposts.infrastructure.InfrastructureTests" time="0.343"/>
+  <testcase name="deletePost" classname="de.hshl.isd.placeholderposts.infrastructure.InfrastructureTests" time="0.338"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
