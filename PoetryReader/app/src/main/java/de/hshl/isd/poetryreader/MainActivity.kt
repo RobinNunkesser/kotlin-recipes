@@ -1,0 +1,54 @@
+package de.hshl.isd.poetryreader
+
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
+import androidx.compose.material.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.tooling.preview.Preview
+import de.hshl.isd.poetryreader.ui.theme.PoetryReaderTheme
+import org.json.JSONArray
+import org.json.JSONObject
+import org.json.JSONTokener
+import java.io.BufferedReader
+
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        testAssets()
+        setContent {
+            PoetryReaderTheme {
+                // A surface container using the 'background' color from the theme
+                Surface(color = MaterialTheme.colors.background) {
+                    Greeting("Android")
+                }
+            }
+        }
+    }
+
+    fun testAssets() {
+        val stream = assets.open("Poetry.json")
+        val content = stream.bufferedReader().use(BufferedReader::readText)
+        val jsonObject = JSONTokener(content).nextValue() as JSONObject
+        val poems = JSONTokener(jsonObject.getString("poems")).nextValue() as JSONArray
+        val poem = poems.getJSONObject(0).getString("poem")
+        print(poem)
+
+
+    }
+}
+
+@Composable
+fun Greeting(name: String) {
+    Text(text = "Hello $name!")
+}
+
+@Preview(showBackground = true)
+@Composable
+fun DefaultPreview() {
+    PoetryReaderTheme {
+        Greeting("Android")
+    }
+}
