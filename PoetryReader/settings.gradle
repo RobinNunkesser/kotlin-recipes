@@ -8,3 +8,5 @@ dependencyResolutionManagement {
 }
 rootProject.name = "PoetryReader"
 include ':app'
+include ':infra'
+include ':domain'

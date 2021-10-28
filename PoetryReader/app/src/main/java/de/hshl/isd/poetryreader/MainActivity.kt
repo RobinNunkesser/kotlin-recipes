@@ -17,7 +17,6 @@ import java.io.BufferedReader
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        testAssets()
         setContent {
             PoetryReaderTheme {
                 // A surface container using the 'background' color from the theme
@@ -26,17 +25,6 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
-    }
-
-    fun testAssets() {
-        val stream = assets.open("Poetry.json")
-        val content = stream.bufferedReader().use(BufferedReader::readText)
-        val jsonObject = JSONTokener(content).nextValue() as JSONObject
-        val poems = JSONTokener(jsonObject.getString("poems")).nextValue() as JSONArray
-        val poem = poems.getJSONObject(0).getString("poem")
-        print(poem)
-
-
     }
 }
 
