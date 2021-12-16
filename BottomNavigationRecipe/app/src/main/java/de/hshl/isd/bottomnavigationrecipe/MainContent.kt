@@ -50,7 +50,9 @@ fun BottomBar(navController: NavHostController) {
                     )
                 },
                 label = { Text(stringResource(screen.resourceId!!)) },
-                selected = currentDestination?.hierarchy?.any { it.route == screen.route } == true,
+                selected = currentDestination?.hierarchy?.any {
+                    it.route == screen.route
+                } == true,
                 onClick = {
                     navController.navigate(screen.route) {
                         popUpTo(navController.graph.findStartDestination().id) {
