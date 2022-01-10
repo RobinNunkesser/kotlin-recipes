@@ -2,6 +2,7 @@ package de.hshl.isd.settings
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
 import androidx.preference.PreferenceManager
@@ -14,7 +15,7 @@ fun <T> rememberPreference(
     val context = LocalContext.current
     val prefs = PreferenceManager.getDefaultSharedPreferences(context)
 
-    val state = remember {
+    val state = remember { mutableStateOf(
         with(prefs) {
             val res: Any = when (defaultValue) {
                 is Long -> getLong(key, defaultValue)
@@ -25,13 +26,13 @@ fun <T> rememberPreference(
                 else -> throw IllegalArgumentException("This type can't be saved into Preferences")
             }
             res as T
-        }
+        })
     }
 
     return remember {
         object : MutableState<T> {
             override var value: T
-                get() = state
+                get() = state.value
                 set(value) {
                     with(prefs.edit()) {
                         when (value) {
