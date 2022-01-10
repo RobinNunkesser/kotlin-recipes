@@ -1,12 +1,12 @@
 package de.hshl.isd.placeholderposts.core
 
-import de.hshl.isd.explicitarchitecture.Repository
 import de.hshl.isd.placeholderposts.core.ports.GetPostCommand
 import de.hshl.isd.placeholderposts.core.ports.PostIDDTO
 import de.hshl.isd.placeholderposts.core.ports.Post
+import io.github.italbytz.ports.common.CrudRepository
 import kotlinx.coroutines.*
 
-class ConcreteGetPostCommand(private val repository: Repository<Long, Post>) :
+class ConcreteGetPostCommand(private val repository: CrudRepository<Long, Post>) :
     GetPostCommand {
     override fun execute(
         inDTO: PostIDDTO,

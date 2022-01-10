@@ -9,6 +9,6 @@ java {
 }
 
 dependencies {
-    implementation("de.hshl.isd:explicitarchitecture:0.1.0")
+    implementation "io.github.italbytz.ports:common:0.1.1"
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.7")
 }

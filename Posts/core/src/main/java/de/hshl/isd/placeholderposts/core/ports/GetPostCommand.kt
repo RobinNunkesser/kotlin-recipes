@@ -1,6 +1,5 @@
 package de.hshl.isd.placeholderposts.core.ports
 
-import de.hshl.isd.explicitarchitecture.Command
+import io.github.italbytz.ports.common.Command
 
-interface GetPostCommand :
-    Command<PostIDDTO, String>
+interface GetPostCommand : Command<PostIDDTO, String>

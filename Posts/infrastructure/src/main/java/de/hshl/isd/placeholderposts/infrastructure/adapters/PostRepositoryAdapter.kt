@@ -1,10 +1,10 @@
 package de.hshl.isd.placeholderposts.infrastructure.adapters
 
-import de.hshl.isd.explicitarchitecture.Repository
 import de.hshl.isd.placeholderposts.core.ports.Post
 import de.hshl.isd.posts.infrastructure.JSONPlaceholderService
+import io.github.italbytz.ports.common.CrudRepository
 
-class PostRepositoryAdapter : Repository<Long, Post> {
+class PostRepositoryAdapter : CrudRepository<Long, Post> {
 
     var service = JSONPlaceholderService()
 
