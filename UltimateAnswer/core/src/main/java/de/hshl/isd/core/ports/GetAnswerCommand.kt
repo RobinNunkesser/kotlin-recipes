@@ -1,5 +1,5 @@
 package de.hshl.isd.core.ports
 
-import de.hshl.isd.explicitarchitecture.Command
+import io.github.italbytz.ports.common.Command
 
-interface GetAnswerCommand : Command<String,String>
+interface GetAnswerCommand : Command<String, String>
