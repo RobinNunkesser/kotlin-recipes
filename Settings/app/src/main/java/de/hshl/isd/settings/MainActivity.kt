@@ -20,7 +20,6 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             SettingsTheme {
-                // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
                     MainContent()
                 }
@@ -32,14 +31,15 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun MainContent() {
     val prefs = getDefaultSharedPreferences(LocalContext.current)
-    var test by remember { mutableStateOf(prefs.getString("zipCode", "World")!!) }
+    val key = "preference_key"
+    val defaultValue = "Default Value"
+    var test by remember { mutableStateOf(prefs.getString(key, defaultValue)!!) }
     Column() {
         TextField(value = test, onValueChange = {
             test = it
-            prefs.edit().putString("zipCode",it).apply()
+            prefs.edit().putString(key,it).apply()
         })
     }
-
 }
 
 @Preview(showBackground = true)
