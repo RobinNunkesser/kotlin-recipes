@@ -9,10 +9,10 @@ java {
 }
 
 dependencies {
-    implementation("com.squareup.retrofit2:retrofit:2.6.0")
-    implementation("com.squareup.retrofit2:converter-gson:2.6.0")
-    implementation "io.github.italbytz.ports:common:0.1.1"
-    implementation("de.hshl.isd:explicitarchitecture-posts-infrastructure-retrofit:0.0.2")
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("io.github.italbytz.ports:common:0.1.1")
+    implementation("io.github.italbytz.infrastructure:jsonplaceholder:0.1.1")
     implementation(project(":core"))
     testImplementation("junit:junit:4.12")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.7")
