@@ -6,11 +6,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.tooling.preview.Preview
 import de.hshl.isd.core.ConcreteGetAnswerCommand
 import de.hshl.isd.infrastructure.adapters.SuperComputerAdapter
@@ -38,7 +34,7 @@ fun MainContent() {
     var question by remember { mutableStateOf("") }
     var resultText by remember { mutableStateOf("") }
     val service = ConcreteGetAnswerCommand(SuperComputerAdapter())
-    val scope = MainScope()
+    val scope = rememberCoroutineScope()
 
     fun success(value: String) {
         resultText = value
@@ -57,9 +53,9 @@ fun MainContent() {
         )
         Button(onClick = {
             scope.launch {
-                val result = runCatching {  service.execute(question) }
-                result.onSuccess(::success)
-                result.onFailure(::failure)
+                runCatching {  service.execute(question) }
+                    .onSuccess(::success)
+                    .onFailure(::failure)
             }
         }) {
             Text("Start")
