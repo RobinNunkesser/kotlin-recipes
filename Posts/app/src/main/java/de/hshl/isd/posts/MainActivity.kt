@@ -12,8 +12,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import de.hshl.isd.placeholderposts.core.ConcreteGetPostCommand
+import de.hshl.isd.placeholderposts.core.ports.PostIDDTO
 import de.hshl.isd.placeholderposts.infrastructure.adapters.PostRepositoryAdapter
 import de.hshl.isd.posts.ui.theme.PostsTheme
+import kotlinx.coroutines.*
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,11 +54,15 @@ fun MainContent() {
             }
         )
         Button(onClick = {
-            service.execute(
-                ConcretePostIDDTO(id.toLong()),
-                ::success,
-                ::failure
-            )
+            MainScope().launch {
+                withContext(Dispatchers.IO) {
+                    val result = kotlin.runCatching {
+                        service.execute(ConcretePostIDDTO(id.toLong()))
+                    }
+                    result.onSuccess(::success)
+                    result.onFailure(::failure)
+                }
+            }
         }) {
             Text("Start")
         }

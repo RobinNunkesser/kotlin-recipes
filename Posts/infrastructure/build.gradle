@@ -11,7 +11,7 @@ java {
 dependencies {
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
-    implementation("io.github.italbytz.ports:common:0.1.1")
+    implementation("io.github.italbytz.ports:common:0.2.0")
     implementation("io.github.italbytz.infrastructure:jsonplaceholder:0.1.1")
     implementation(project(":core"))
     testImplementation("junit:junit:4.12")
