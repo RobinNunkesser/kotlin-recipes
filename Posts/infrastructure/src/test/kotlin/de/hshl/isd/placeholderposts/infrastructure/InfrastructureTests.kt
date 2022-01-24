@@ -12,13 +12,13 @@ class InfrastructureTests {
     fun readAllPosts() {
         val adapter = PostRepositoryAdapter()
         runBlocking {
-            val result = kotlin.runCatching {
+            kotlin.runCatching {
                 adapter.retrieveAll()
             }
-            result.onFailure { Fail(it) }
-            result.onSuccess {
-                Assert.assertEquals(100, it.count())
-            }
+                .onFailure { Fail(it) }
+                .onSuccess {
+                    Assert.assertEquals(100, it.count())
+                }
         }
     }
 
@@ -26,16 +26,16 @@ class InfrastructureTests {
     fun readPost() {
         val adapter = PostRepositoryAdapter()
         runBlocking {
-            val result = kotlin.runCatching {
+            kotlin.runCatching {
                 adapter.retrieve(1)
             }
-            result.onFailure { Fail(it) }
-            result.onSuccess {
-                Assert.assertEquals(1, it.userID)
-                Assert.assertEquals(1, it.id)
-                Assert.assertTrue(it.title.startsWith("sunt aut facere"))
-                Assert.assertTrue(it.body.startsWith("quia et suscipit"))
-            }
+                .onFailure { Fail(it) }
+                .onSuccess {
+                    Assert.assertEquals(1, it.userID)
+                    Assert.assertEquals(1, it.id)
+                    Assert.assertTrue(it.title.startsWith("sunt aut facere"))
+                    Assert.assertTrue(it.body.startsWith("quia et suscipit"))
+                }
         }
     }
 
@@ -43,13 +43,13 @@ class InfrastructureTests {
     fun createPost() {
         val adapter = PostRepositoryAdapter()
         runBlocking {
-            val result = kotlin.runCatching {
+            kotlin.runCatching {
                 adapter.create(PostEntity(1, 1, "foo", "bar"))
             }
-            result.onFailure { Fail(it) }
-            result.onSuccess {
-                Assert.assertEquals(101, it)
-            }
+                .onFailure { Fail(it) }
+                .onSuccess {
+                    Assert.assertEquals(101, it)
+                }
         }
     }
 
@@ -57,13 +57,13 @@ class InfrastructureTests {
     fun deletePost() {
         val adapter = PostRepositoryAdapter()
         runBlocking {
-            val result = kotlin.runCatching {
+            kotlin.runCatching {
                 adapter.delete(1)
             }
-            result.onFailure { Fail(it) }
-            result.onSuccess {
-                Assert.assertTrue(it)
-            }
+                .onFailure { Fail(it) }
+                .onSuccess {
+                    Assert.assertTrue(it)
+                }
         }
     }
 
@@ -71,13 +71,13 @@ class InfrastructureTests {
     fun updatePost() {
         val adapter = PostRepositoryAdapter()
         runBlocking {
-            val result = kotlin.runCatching {
+            kotlin.runCatching {
                 adapter.update(1, PostEntity(1, 1, "foo", "bar"))
             }
-            result.onFailure { Fail(it) }
-            result.onSuccess {
-                Assert.assertTrue(it)
-            }
+                .onFailure { Fail(it) }
+                .onSuccess {
+                    Assert.assertTrue(it)
+                }
         }
     }
 }

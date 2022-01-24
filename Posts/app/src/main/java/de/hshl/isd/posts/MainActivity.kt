@@ -51,7 +51,7 @@ fun MainContent() {
         )
         Button(onClick = {
             scope.launch {
-                val result = kotlin.runCatching {
+                kotlin.runCatching {
                     service.execute(ConcretePostIDDTO(id.toLong()))
                 }
                     .onSuccess(::success)
