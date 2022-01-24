@@ -10,7 +10,7 @@ class AsyncExample {
     fun backgroundExample() {
 
         // launch a new coroutine in background and continue
-        GlobalScope.launch(context = Dispatchers.IO) {
+        MainScope().launch(context = Dispatchers.IO) {
             delay(1000L) // non-blocking delay for 1 second
             print("World!") // print after delay
         }
@@ -20,7 +20,7 @@ class AsyncExample {
     fun uiExample(handler: (String) -> Unit) {
 
         // UI changes should happen with Main Dispatcher
-        GlobalScope.launch(context = Dispatchers.Main) {
+        MainScope().launch(context = Dispatchers.Main) {
             var result: Int
             val one = GlobalScope.async { doSomethingUsefulOne() }
             val two = GlobalScope.async { doSomethingUsefulTwo() }
@@ -32,7 +32,7 @@ class AsyncExample {
 
     fun uiNetworkExample(handler: (String) -> Unit) {
 
-        GlobalScope.launch(context = Dispatchers.Main) {
+        MainScope().launch(context = Dispatchers.Main) {
             // Networking should happen on Dispatchers IO
             withContext(Dispatchers.IO) {
                 val result = kotlin.runCatching {
