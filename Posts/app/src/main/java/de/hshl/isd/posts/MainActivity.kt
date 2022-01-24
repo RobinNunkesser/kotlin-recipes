@@ -6,11 +6,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.*
 import de.hshl.isd.placeholderposts.core.ConcreteGetPostCommand
 import de.hshl.isd.placeholderposts.core.ports.PostIDDTO
 import de.hshl.isd.placeholderposts.infrastructure.adapters.PostRepositoryAdapter
@@ -35,8 +31,8 @@ fun MainContent() {
     val tag = "MainContent"
     var id by remember { mutableStateOf("1") }
     var resultText by remember { mutableStateOf("") }
-    var service = ConcreteGetPostCommand(PostRepositoryAdapter())
-
+    val service = ConcreteGetPostCommand(PostRepositoryAdapter())
+    val scope = rememberCoroutineScope()
 
     fun success(value: String) {
         resultText = value
@@ -54,14 +50,12 @@ fun MainContent() {
             }
         )
         Button(onClick = {
-            MainScope().launch {
-                withContext(Dispatchers.IO) {
-                    val result = kotlin.runCatching {
-                        service.execute(ConcretePostIDDTO(id.toLong()))
-                    }
-                    result.onSuccess(::success)
-                    result.onFailure(::failure)
+            scope.launch {
+                val result = kotlin.runCatching {
+                    service.execute(ConcretePostIDDTO(id.toLong()))
                 }
+                    .onSuccess(::success)
+                    .onFailure(::failure)
             }
         }) {
             Text("Start")

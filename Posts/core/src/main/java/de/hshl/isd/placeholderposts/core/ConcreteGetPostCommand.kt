@@ -10,7 +10,9 @@ class ConcreteGetPostCommand(private val repository: CrudRepository<Long, Post>)
     GetPostCommand {
 
     override suspend fun execute(inDTO: PostIDDTO): String {
-        return (repository.retrieve(inDTO.id)).toString()
+        return withContext(Dispatchers.IO) {
+            (repository.retrieve(inDTO.id)).toString()
+        }
     }
 
 }
