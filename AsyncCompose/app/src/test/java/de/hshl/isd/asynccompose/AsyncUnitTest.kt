@@ -33,26 +33,17 @@ class AsyncUnitTest {
     }
 
     @Test
-    fun testSuspendFunctions() {
-        assertEquals(runBlocking { testClass!!.doSomethingUsefulOne() }, 13)
+    fun testUsefulFunctions() {
+        assertEquals(13, runBlocking { testClass!!.doSomethingUsefulOne() })
+        assertEquals(29, runBlocking { testClass!!.doSomethingUsefulTwo() })
+        assertEquals(42, runBlocking { testClass!!.asyncCalculation() })
+    }
+
+    @Test
+    fun testNetworkingFunction() {
+        val result = runBlocking { testClass!!.readFromNetwork() }
+        assertEquals("[", result.subSequence(0,1))
         assertEquals(runBlocking { testClass!!.doSomethingUsefulTwo() }, 29)
     }
 
-    @Test
-    fun testUIExample() {
-        val future = CompletableFuture<Int>()
-        testClass!!.uiExample {
-            future.complete(1)
-        }
-        assertEquals(1, future.get() as Int)
-    }
-
-    @Test
-    fun testUINetworkExample() {
-        val future = CompletableFuture<Int>()
-        testClass!!.uiNetworkExample {
-            future.complete(1)
-        }
-        assertEquals(1, future.get() as Int)
-    }
 }
