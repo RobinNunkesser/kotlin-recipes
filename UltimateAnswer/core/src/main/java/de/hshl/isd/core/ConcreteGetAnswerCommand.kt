@@ -9,15 +9,8 @@ import kotlinx.coroutines.withContext
 
 class ConcreteGetAnswerCommand(val superComputer: SuperComputer)
     : GetAnswerCommand{
-    override fun execute(
-        inDTO: String,
-        successHandler: (success: String) -> Unit,
-        errorHandler: (error: Throwable) -> Unit
-    ) {
-        GlobalScope.launch {
-            val result = runCatching {  superComputer.answer(inDTO) }
-            result.onSuccess(successHandler)
-            result.onFailure(errorHandler)
-        }
+    override suspend fun execute(inDTO: String): String {
+        return superComputer.answer(inDTO)
     }
+
 }

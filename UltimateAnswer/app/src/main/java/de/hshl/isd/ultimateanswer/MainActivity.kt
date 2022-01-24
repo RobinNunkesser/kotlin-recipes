@@ -15,6 +15,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import de.hshl.isd.core.ConcreteGetAnswerCommand
 import de.hshl.isd.infrastructure.adapters.SuperComputerAdapter
 import de.hshl.isd.ultimateanswer.ui.theme.UltimateAnswerTheme
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,8 +37,8 @@ fun MainContent() {
     val tag = "MainContent"
     var question by remember { mutableStateOf("") }
     var resultText by remember { mutableStateOf("") }
-    var service = ConcreteGetAnswerCommand(SuperComputerAdapter())
-
+    val service = ConcreteGetAnswerCommand(SuperComputerAdapter())
+    val scope = MainScope()
 
     fun success(value: String) {
         resultText = value
@@ -53,7 +56,11 @@ fun MainContent() {
             }
         )
         Button(onClick = {
-            service.execute(question, ::success, ::failure)
+            scope.launch {
+                val result = runCatching {  service.execute(question) }
+                result.onSuccess(::success)
+                result.onFailure(::failure)
+            }
         }) {
             Text("Start")
         }
