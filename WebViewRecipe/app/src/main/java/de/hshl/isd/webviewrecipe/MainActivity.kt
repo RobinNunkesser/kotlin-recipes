@@ -20,7 +20,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             WebViewRecipeTheme {
                 Surface(color = MaterialTheme.colors.background) {
-                    CustomWebView(url = "https://developer.android.com")
+                    CustomWebView(url = "https://www.hshl.de")
                 }
             }
         }
