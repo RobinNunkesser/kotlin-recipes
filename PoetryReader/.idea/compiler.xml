@@ -4,6 +4,8 @@
     <bytecodeTargetLevel target="1.7">
       <module name="PoetryReader.app" target="11" />
       <module name="PoetryReader.infra" target="1.8" />
+      <module name="PoetryReader.infra.main" target="1.8" />
+      <module name="PoetryReader.infra.test" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
