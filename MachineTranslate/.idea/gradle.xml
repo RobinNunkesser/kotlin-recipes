@@ -12,8 +12,6 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/infra" />
-            <option value="$PROJECT_DIR$/infrastructure" />
             <option value="$PROJECT_DIR$/ports" />
           </set>
         </option>

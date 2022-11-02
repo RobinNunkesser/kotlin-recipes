@@ -15,5 +15,3 @@ dependencyResolutionManagement {
 rootProject.name = "Machine Translate"
 include ':app'
 include ':ports'
-include ':infra'
-include ':infrastructure'

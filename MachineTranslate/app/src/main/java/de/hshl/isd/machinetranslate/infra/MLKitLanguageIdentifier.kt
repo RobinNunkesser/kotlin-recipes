@@ -1,4 +1,4 @@
-package de.hshl.isd.infrastructure
+package de.hshl.isd.machinetranslate.infra
 
 import com.google.mlkit.nl.languageid.LanguageIdentification
 import de.hshl.isd.ports.LanguageIdentifier
