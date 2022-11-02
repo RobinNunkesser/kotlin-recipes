@@ -10,10 +10,13 @@ import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.currentRecomposeScope
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import de.hshl.isd.machinetranslate.ui.theme.MachineTranslateTheme
+import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
 
